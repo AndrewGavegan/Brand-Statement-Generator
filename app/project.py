@@ -3,10 +3,13 @@ import openai
 from dotenv import load_dotenv
 load_dotenv()
 
-# Load your API key from an environment variable or secret management service
+# Loading API key from .env file
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+subject = "coffee"
+prompt = f"Generate upbeat branding snippet for {subject}"
+
 response = openai.Completion.create(
-    model="text-davinci-002", prompt="Say this is a test", temperature=0, max_tokens=6)
+    model="davinci-instruct-beta-v3", prompt=prompt, temperature=0, max_tokens=32)
 
 print(response)
